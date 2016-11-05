@@ -20,6 +20,12 @@ else {
 $body = ConvertTo-JSON @{
     text = $txt
     title = "Posted via Azure automation"
+    potentialAction = @(@{
+        '@context' = 'http://schema.org'
+        '@type' = 'ViewAction'
+        name = 'Some button to do something'
+        target = @('http://oddvar.moe')
+    })
 }
 
 irm -uri $uri -Method Post -body $body -ContentType 'application/json'
