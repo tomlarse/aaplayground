@@ -17,7 +17,7 @@ else {
     $txt =  "webhookdata didn't work tho..."
 }
 
-$body = ConvertTo-JSON @{
+$body = ConvertTo-JSON -Depth 2 @{
     text = $txt
     title = "Posted via Azure automation"
     potentialAction = @(@{
