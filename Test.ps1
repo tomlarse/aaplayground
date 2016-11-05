@@ -11,14 +11,15 @@ if ($WebhookData -ne $null) {
 
     $params = ConvertFrom-Json -InputObject $WebhookBody
 
-    $txt = $params.txt + " - Posted via Azure automation"
+    $txt = $params.txt
 }
 else {
-    $txt =  "Posted via Azure automation, webhookdata didn't work tho..."
+    $txt =  "webhookdata didn't work tho..."
 }
 
 $body = ConvertTo-JSON @{
     text = $txt
+    title = "Posted via Azure automation"
 }
 
 irm -uri $uri -Method Post -body $body -ContentType 'application/json'
